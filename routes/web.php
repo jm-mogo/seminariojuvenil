@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InscriptionNewController;
+use App\Http\Controllers\InscriptionRecurrentController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,6 +20,16 @@ Route::get('inscription/new', function () {
 })->name('inscription.new');
 
 Route::post('inscription/new', [InscriptionNewController::class, 'store'])->name('inscription.new.post');
+
+Route::get('inscription/recurrent', function () {
+    return Inertia::render('Inscription/Recurrent');
+})->name('inscription.recurrent');
+
+Route::post('inscription/recurrent', [InscriptionRecurrentController::class, 'store'])->name('inscription.recurrent.post');
+
+Route::get('inscription/successful', function () {
+    return Inertia::render('Inscription/Successful');
+})->name('inscription.successful');
 
 Route::get('admin', function () {
     return Inertia::render('Dashboard');

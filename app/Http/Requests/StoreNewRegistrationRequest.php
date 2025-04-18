@@ -60,7 +60,6 @@ class StoreNewRegistrationRequest extends FormRequest
             'enrollmentPurpose' => ['required', 'file', 'mimes:doc,docx,pdf', "max:{$maxDocumentSize}"],
             'recommendationLetter' => ['nullable', 'file', 'mimes:doc,docx,pdf', "max:{$maxPhotoSize}"], // Optional
 
-            // --- Add agreed_to_rules_online checkbox to your frontend form ---
         ];
     }
 

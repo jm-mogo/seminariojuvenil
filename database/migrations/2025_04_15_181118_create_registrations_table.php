@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->enum('registration_type', ['new', 'recurring'])->comment('new or recurring')->index();
+            $table->enum('registration_type', ['new', 'recurrent'])->comment('new or recurrent')->index();
             $table->string('status')->default('draft')->comment('draft, submitted, interview_scheduled, approved, etc.')->index();
             $table->string('payment_status')->default('pending')->comment('pending, paid, waived')->index();
             $table->text('final_decision_notes')->nullable()->comment('Internal notes, rejection reasons, etc.');

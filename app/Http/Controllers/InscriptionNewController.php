@@ -96,7 +96,7 @@ class InscriptionNewController extends Controller
             DB::commit();
 
             // Redirect back with a success message (user-facing text in Spanish)
-            return redirect()->back()->with('success', '¡Inscripción enviada con éxito! Nos pondremos en contacto pronto.');
+            return redirect()->route('inscription.successful')->with('success', '¡Inscripción enviada con éxito! Nos pondremos en contacto pronto.');
         } catch (\Throwable $e) {
             // 6. Rollback transaction on error
             DB::rollBack();

@@ -50,7 +50,7 @@
                     </Link>
 
                     <!-- Inertia Link for "Reinscripción" -->
-                    <Link href="/inscription/old" class="inline-block w-5/6 md:w-2/5">
+                    <Link href="/inscription/recurrent" class="inline-block w-5/6 md:w-2/5">
                         <Button as-child class="group/arrow w-full font-bold">
                             <span>
                                 Reinscripción
