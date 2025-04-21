@@ -40,7 +40,7 @@ class InscriptionRecurrentController extends Controller
             // 1. Prepare data for insertion
             $registrationData = [
                 'registration_type' => 'recurrent',
-                'status' => 'submitted',
+                'interview_status' => 'pending',
                 'payment_status' => 'pending',
                 'student_full_name' => $validatedData['studentFirstName'] . ' ' . $validatedData['studentLastName'],
                 'student_date_of_birth' => $validatedData['birthDate'],

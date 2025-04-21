@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->enum('registration_type', ['new', 'recurrent'])->comment('new or recurrent')->index();
-            $table->string('status')->default('draft')->comment('draft, submitted, interview_scheduled, approved, etc.')->index();
             $table->string('payment_status')->default('pending')->comment('pending, paid, waived')->index();
             $table->text('final_decision_notes')->nullable()->comment('Internal notes, rejection reasons, etc.');
 
@@ -51,7 +50,7 @@ return new class extends Migration
             // Interview Details
             $table->timestamp('interview_scheduled_at')->nullable()->index();
             $table->text('interview_notes')->nullable()->comment('Notes taken during the interview');
-            $table->enum('interview_status', ['pending_scheduling', 'scheduled', 'completed', 'accepted', 'rejected'])->default('pending_scheduling')->comment('Interview status: pending_scheduling, scheduled, completed, accepted, rejected')->index();
+            $table->enum('interview_status', ['pending', 'checked', 'scheduled', 'accepted', 'rejected'])->default('pending_scheduling')->comment('Interview status: pending_scheduling, scheduled, completed, accepted, rejected')->index();
 
             $table->timestamps();
         });

@@ -31,6 +31,14 @@ class InscriptionNewController extends Controller
         $filePaths = [];
         $baseStoragePath = 'public/registrations'; // Store in storage/app/public/registrations
 
+        $fileFields = [
+            'profilePhoto' => 'doc_photo_path',
+            'studentIdPhoto' => 'doc_student_id_card_path',
+            'guardianIdPhoto' => 'doc_guardian_id_card_path',
+            'salvationTestimony' => 'doc_testimony_path',
+            'enrollmentPurpose' => 'doc_purpose_statement_path',
+            'recommendationLetter' => 'doc_recommendation_path',
+        ];
         // Use a database transaction for atomicity
         try {
             DB::beginTransaction();
@@ -38,7 +46,7 @@ class InscriptionNewController extends Controller
             // 1. Prepare data for insertion (combine names, set defaults)
             $registrationData = [
                 'registration_type' => 'new',
-                'status' => 'submitted', // Mark as submitted now
+                'interview_status' => 'pending', // Default status
                 'payment_status' => 'pending',
                 'student_full_name' => $validatedData['studentFirstName'] . ' ' . $validatedData['studentLastName'],
                 'student_date_of_birth' => $validatedData['birthDate'],
@@ -64,14 +72,7 @@ class InscriptionNewController extends Controller
             // 3. Handle File Uploads (now that we have the registration ID/UUID)
             $registrationSpecificPath = "{$baseStoragePath}/{$registration->id}"; // Use the actual ID/UUID
 
-            $fileFields = [
-                'profilePhoto' => 'doc_photo_path',
-                'studentIdPhoto' => 'doc_student_id_card_path',
-                'guardianIdPhoto' => 'doc_guardian_id_card_path',
-                'salvationTestimony' => 'doc_testimony_path',
-                'enrollmentPurpose' => 'doc_purpose_statement_path',
-                'recommendationLetter' => 'doc_recommendation_path',
-            ];
+
 
             foreach ($fileFields as $requestField => $dbColumn) {
                 if ($request->hasFile($requestField)) {

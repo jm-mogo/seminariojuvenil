@@ -20,7 +20,6 @@ class Registration extends Model
      */
     protected $fillable = [
         'registration_type',
-        'status',
         'payment_status',
         // 'final_decision_notes', // Usually set later
         'student_full_name',
@@ -47,7 +46,7 @@ class Registration extends Model
         'doc_purpose_statement_path',
         // 'interview_scheduled_at', // Usually set later
         // 'interview_notes', // Usually set later
-        // 'interview_status', // Set by default or later
+        'interview_status', // Set by default or later
     ];
 
     /**
