@@ -7,7 +7,7 @@
         }"
     >
         <a href="/" class="flex items-center gap-2 text-lg font-bold">
-            <img src="logo.jpg" alt="" class="h-12" />
+            <img src="logo.png" alt="" class="h-12" />
             Seminario Juvenil</a
         >
         <!-- Mobile -->
@@ -21,11 +21,9 @@
                     <div>
                         <SheetHeader class="mb-4 ml-4">
                             <SheetTitle class="flex items-center">
-                                <a href="/" class="flex items-center">
-                                    <ChevronsDown
-                                        class="from-primary/70 via-primary to-primary/70 mr-2 size-9 rounded-lg border bg-gradient-to-tr text-white"
-                                    />
-                                    ShadcnVue
+                                <a href="/" class="flex items-center gap-2">
+                                    <img src="logo.png" alt="" class="h-12" />
+                                    Seminario Juvenil
                                 </a>
                             </SheetTitle>
                         </SheetHeader>
@@ -76,7 +74,7 @@ import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
-import { ChevronsDown, Menu } from 'lucide-vue-next';
+import { Menu } from 'lucide-vue-next';
 
 interface RouteProps {
     href: string;

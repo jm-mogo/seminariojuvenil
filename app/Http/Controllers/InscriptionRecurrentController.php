@@ -31,7 +31,7 @@ class InscriptionRecurrentController extends Controller
         // --- End definition ---
 
         $filePaths = []; // To store paths of *successfully* saved files
-        $baseStoragePath = 'public/registrations';
+        $baseStoragePath = 'registrations';
         $registrationSpecificPath = null; // Initialize path variable
 
         try {

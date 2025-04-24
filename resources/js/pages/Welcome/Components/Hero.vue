@@ -23,7 +23,7 @@ const handleClick = () => {
                     </h1>
                 </div>
 
-                <p class="text-muted-foreground mx-auto max-w-screen-sm text-xl">Un espacio sano para crecer espiritualmente.</p>
+                <p class="text-muted-foreground mx-auto max-w-screen-sm text-xl">El lugar ideal para crecer.</p>
 
                 <div class="space-y-4 md:space-y-0 md:space-x-4">
                     <Button class="group/arrow w-5/6 font-bold md:w-1/4" @click="() => handleClick()">
@@ -39,7 +39,7 @@ const handleClick = () => {
 
                 <img
                     class="rouded-lg border-t-primary/30 img-border-animation relative mx-auto flex w-full items-center rounded-lg border border-t-2 leading-none md:w-[1200px]"
-                    :src="mode == 'light' ? 'banner.jpg' : 'banner.jpg'"
+                    :src="mode == 'light' ? 'banner.webp' : 'banner.webp'"
                     alt="dashboard using shadcn-vue"
                 />
 

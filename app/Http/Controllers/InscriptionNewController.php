@@ -29,7 +29,7 @@ class InscriptionNewController extends Controller
         // Using the request timestamp + random string for uniqueness before we have the ID/UUID
         // Or, better, if using UUIDs on 'id', it's available after create. Let's adjust.
         $filePaths = [];
-        $baseStoragePath = 'public/registrations'; // Store in storage/app/public/registrations
+        $baseStoragePath = 'registrations'; // Store in storage/app/public/registrations
 
         $fileFields = [
             'profilePhoto' => 'doc_photo_path',
