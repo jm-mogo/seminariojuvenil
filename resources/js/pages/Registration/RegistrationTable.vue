@@ -13,7 +13,10 @@
                 <TableHead>{{ registration.student_full_name }}</TableHead>
                 <TableHead>{{ formatDateTime(registration.created_at) }}</TableHead>
                 <TableHead>{{ registration.interview_status }}</TableHead>
-                <TableHead> <a :href="'registrations/' + registration.id">Ver detalles</a></TableHead>
+                <!-- Use Inertia's Link component for SPA navigation -->
+                <TableHead>
+                    <Link :href="'registrations/' + registration.id"> Ver detalles </Link>
+                </TableHead>
             </TableRow>
         </TableBody>
     </Table>
@@ -22,19 +25,18 @@
 <script setup lang="ts">
 import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { type Registration } from '@/types';
+import { Link } from '@inertiajs/vue3'; // <-- Import Inertia Link
 
 interface Props {
     registrations: Registration[];
 }
 
 const props = defineProps<Props>();
-const registrations = props.registrations;
+console.log('props', props);
 
 const formatDateTime = (dateTimeString: string | null | undefined): string | null => {
     if (!dateTimeString) return null;
     try {
-        // 'undefined' usará la configuración regional del navegador.
-        // Para forzar español: new Date(dateTimeString).toLocaleString('es-ES', { ... })
         return new Date(dateTimeString).toLocaleString(undefined, {
             year: 'numeric',
             month: 'short',

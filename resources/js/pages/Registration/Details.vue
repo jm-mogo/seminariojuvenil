@@ -33,7 +33,9 @@
                         <p>
                             ¡Gracias por realizar la inscripción en línea del Seminario Juvenil! Ya hemos revisado sus datos. Para continuar, por
                             favor agende una entrevista usando el siguiente enlace único. Recuerde no compartirlo:
-                            <strong class="font-semibold">{{ registration.interview_scheduling_link || '[ENLACE PENDIENTE]' }}</strong>
+                            <strong class="font-semibold">
+                                <a :href="generateAppointmentLink(registration.id)" target="_blank" rel="noopener noreferrer">LINK DE AGENDADO</a>
+                            </strong>
                         </p>
                     </div>
                     <div class="flex items-center gap-2">
@@ -226,7 +228,7 @@ const handleCheck = () => {
 // *** Computed Property for the Interview Message ***
 const interviewMessageText = computed(() => {
     // Replace placeholder with actual data if available, otherwise use a placeholder
-    const link = registration.value.interview_scheduling_link || '[ENLACE PENDIENTE]'; // Use a clear placeholder
+    const link = generateAppointmentLink(registration.value.id) || '[ENLACE PENDIENTE]'; // Use a clear placeholder
     // Construct the full message text
     return `¡Gracias por realizar la inscripción en línea del Seminario Juvenil! Ya hemos revisado sus datos. Para continuar, por favor agende una entrevista usando el siguiente enlace único. \nRecuerde no compartirlo: ${link}`;
 });
@@ -338,6 +340,11 @@ const hasDocuments = computed(() => {
         registration.value.doc_purpose_statement_path
     );
 });
+
+const generateAppointmentLink = (registrationId: string): string => {
+    const baseUrl = window.location.origin; // URL base de la aplicación
+    return `${baseUrl}/inscription/appointment/${registrationId}`;
+};
 </script>
 
 <style scoped>

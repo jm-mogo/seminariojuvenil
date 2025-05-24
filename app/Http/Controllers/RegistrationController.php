@@ -18,11 +18,8 @@ class RegistrationController extends Controller
         ]);
     }
 
-    public function showRegistration()
+    public function showRegistration(Registration $registration)
     {
-        $registrationId = request()->route('registrationId');
-        $registration = Registration::where('id', $registrationId)->first();
-
         if (!$registration) {
             return redirect()->route('admin.registrations')->with('error', 'Registration not found');
         }

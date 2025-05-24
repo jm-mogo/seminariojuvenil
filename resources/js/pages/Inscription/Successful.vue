@@ -1,31 +1,20 @@
-<template>
-    <header
-        :class="{
-            'bg-card sticky top-5 z-40 mx-auto mt-4 flex w-[90%] items-center justify-between rounded-2xl border p-2 shadow-md md:w-[70%] lg:w-[75%] lg:max-w-screen-xl': true,
-        }"
-    >
-        <a href="/" class="flex items-center gap-2 text-lg font-bold">
-            <!-- Ensure logo is in the public folder -->
-            <img src="/logo.jpg" alt="Logo Seminario Juvenil" class="h-12" />
-            Seminario Juvenil
-        </a>
-    </header>
-    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto grid place-items-center gap-8 py-20 md:py-32 lg:max-w-screen-xl">
-            <div class="space-y-8 text-center">
-                <div class="mx-auto max-w-screen-md text-center text-5xl font-bold md:text-6xl">
-                    <h1>¡Inscripción enviada con éxito! Nos pondremos en contacto pronto.</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-</template>
-
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+import { computed, onMounted } from 'vue';
+
+const page = usePage();
+
+// Make the computed property safely access nested properties
+const flashSuccess = computed(() => {
+    // Check if page.props and page.props.flash exist before accessing .success
+    if (page.props && page.props.flash) {
+        return page.props.flash.success as string | null;
+    }
+    return null; // Return null if flash object doesn't exist
+});
 
 onMounted(() => {
-    // Ensure light mode is enforced if needed
+    // ... rest of your onMounted logic
     const htmlElement = document.documentElement;
     if (htmlElement.classList.contains('dark')) {
         htmlElement.classList.remove('dark');
@@ -33,6 +22,35 @@ onMounted(() => {
     htmlElement.classList.add('light');
 });
 </script>
+
+<template>
+    <!-- ... Header ... -->
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto grid place-items-center gap-8 py-20 md:py-32 lg:max-w-screen-xl">
+            <!-- Success Message Display (v-if still works correctly) -->
+            <div
+                v-if="flashSuccess"
+                class="mb-6 w-full max-w-screen-md rounded border border-green-400 bg-green-100 px-4 py-3 text-center text-green-700"
+                role="alert"
+            >
+                <p class="font-bold">¡Éxito!</p>
+                <p>{{ flashSuccess }}</p>
+            </div>
+            <!-- End Success Message Display -->
+
+            <!-- ... Rest of the template ... -->
+            <div class="space-y-8 text-center">
+                <div class="mx-auto max-w-screen-md text-center text-5xl font-bold md:text-6xl">
+                    <h1>¡Operación completada con éxito!</h1>
+                </div>
+                <div class="mx-auto max-w-screen-md text-center text-lg">
+                    <p>Nos pondremos en contacto pronto si es necesario.</p>
+                    <a href="/" class="mt-4 inline-block text-blue-600 hover:underline">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
 
 <style scoped>
 /* Keep existing animations if they are used elsewhere, otherwise they can be removed */

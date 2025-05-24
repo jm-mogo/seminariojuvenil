@@ -151,8 +151,16 @@ class AppointmentController extends Controller
 
         // Optional: Check if the registration is already booked
         if ($registration->interview_status === 'scheduled') {
+            $selectedDate = AppointmentAvailability::where('registration_id', $registration->id)
+                ->first(['date', 'time']);
+            if ($selectedDate) {
+                $formattedDate = Carbon::parse($selectedDate->date)->format('d/m/Y');
+                $formattedTime = Carbon::parse($selectedDate->time)->format('H:i');
+                return Redirect::route('inscription.successful') // Or a dedicated 'booking confirmed' page
+                    ->with('successmk', 'Ya tienes una cita reservada para el ' . $formattedDate . ' a las ' . $formattedTime . '.');
+            }
             return Redirect::route('inscription.successful') // Or a dedicated 'booking confirmed' page
-                ->with('success', 'Cita reservada con éxito para el ');
+                ->with('success', 'Cita reservada con éxito.');
         }
 
         // Fetch only AVAILABLE slots (registration_id is null)
