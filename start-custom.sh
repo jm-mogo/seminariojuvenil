@@ -7,7 +7,7 @@ set -e
 NGINX_TEMPLATE_CONF="/assets/nginx.template.conf"
 NGINX_CONF="/nginx.conf"
 PRESTART_SCRIPT="/assets/scripts/prestart.mjs"
-CLIENT_MAX_BODY_SIZE_VALUE="64M" # Set your desired Nginx value here
+CLIENT_MAX_BODY_SIZE_VALUE="64M" # Set your desired Nginx value here (e.g., 64M)
 
 echo "Custom Start: Running original prestart script for Nginx..."
 node "${PRESTART_SCRIPT}" "${NGINX_TEMPLATE_CONF}" "${NGINX_CONF}"
@@ -23,40 +23,23 @@ awk -v size="${CLIENT_MAX_BODY_SIZE_VALUE}" '
 echo "Custom Start: Verifying client_max_body_size in ${NGINX_CONF}..."
 grep 'client_max_body_size' "${NGINX_CONF}" || echo "Custom Start: WARNING - client_max_body_size not found in Nginx config after modification!"
 
+# --- PHP Configuration & Start ---
+# Desired PHP settings
+PHP_POST_MAX_SIZE="64M"       # e.g., 64M
+PHP_UPLOAD_MAX_FILESIZE="64M" # e.g., 64M
+PHP_MEMORY_LIMIT="128M"     # e.g., 128M
 
-# --- PHP Configuration ---
-# Source of your custom php.ini (copied by Nixpacks to /app/.nixpacks/php.ini)
-CUSTOM_PHP_INI_SOURCE="/app/.nixpacks/php.ini"
+echo "Custom Start: Starting PHP-FPM with custom INI settings and Nginx..."
+php-fpm \
+    -y /assets/php-fpm.conf \
+    -d post_max_size="${PHP_POST_MAX_SIZE}" \
+    -d upload_max_filesize="${PHP_UPLOAD_MAX_FILESIZE}" \
+    -d memory_limit="${PHP_MEMORY_LIMIT}" & # Start php-fpm in the background
 
-# Determine PHP's scan directory for additional .ini files
-# This assumes PHP CLI's php.ini scan dir is the same or relevant for FPM, which is usually true for conf.d
-# A more robust way would be to get this from php-fpm -i if possible, but this is a good heuristic
-PHP_SCAN_DIR=$(php -r "echo ini_get('scan_dir') ?: (dirname(php_ini_loaded_file()) . '/conf.d');" 2>/dev/null || echo "/etc/php/$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')/fpm/conf.d")
-# Fallback if the above fails to give a sensible path
-if [ -z "$PHP_SCAN_DIR" ] || [ ! -d "$PHP_SCAN_DIR" ]; then
-    PHP_MAJOR_MINOR=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')
-    PHP_SCAN_DIR="/etc/php/${PHP_MAJOR_MINOR}/fpm/conf.d" # Common default path structure
-fi
+NGINX_PID=$! # Capture PHP-FPM PID (though it's backgrounded)
 
-TARGET_PHP_CUSTOM_INI="${PHP_SCAN_DIR}/99-nixpacks-custom.ini" # Use 99- to load it late, potentially overriding others
+nginx -c "${NGINX_CONF}" # Start nginx in the foreground
 
-if [ -f "${CUSTOM_PHP_INI_SOURCE}" ]; then
-    echo "Custom Start: PHP scan directory determined as: ${PHP_SCAN_DIR}"
-    echo "Custom Start: Attempting to copy ${CUSTOM_PHP_INI_SOURCE} to ${TARGET_PHP_CUSTOM_INI}..."
-    mkdir -p "${PHP_SCAN_DIR}" # Ensure the directory exists
-    cp "${CUSTOM_PHP_INI_SOURCE}" "${TARGET_PHP_CUSTOM_INI}"
-    echo "Custom Start: Copied custom PHP ini."
-    echo "Custom Start: Content of custom PHP ini (${TARGET_PHP_CUSTOM_INI}):"
-    cat "${TARGET_PHP_CUSTOM_INI}" # Log the content for verification
-else
-    echo "Custom Start: WARNING - Custom PHP ini source ${CUSTOM_PHP_INI_SOURCE} not found."
-fi
-
-
-# --- Start Services ---
-echo "Custom Start: Starting PHP-FPM and Nginx..."
-php-fpm -y /assets/php-fpm.conf & # Start php-fpm in the background
-nginx -c "${NGINX_CONF}"          # Start nginx in the foreground (as the main process)
-
-# Keep the script running
-wait
+# Wait for PHP-FPM if needed, or just let nginx be the main process
+# If nginx exits, the container will stop.
+wait $NGINX_PID # This might not be strictly necessary if nginx is foreground.
