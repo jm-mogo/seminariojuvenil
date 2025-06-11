@@ -81,20 +81,7 @@ interface RouteProps {
     label: string;
 }
 
-const routeList: RouteProps[] = [
-    {
-        href: '#testimonials',
-        label: 'Testimonios',
-    },
-    {
-        href: '#team',
-        label: 'Team',
-    },
-    {
-        href: '#contact',
-        label: 'Contact',
-    },
-];
+const routeList: RouteProps[] = [];
 
 const isOpen = ref<boolean>(false);
 </script>

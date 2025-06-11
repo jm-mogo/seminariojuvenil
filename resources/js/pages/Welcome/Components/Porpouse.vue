@@ -12,23 +12,24 @@ interface BenefitsProps {
 const benefitList: BenefitsProps[] = [
     {
         icon: 'blocks',
-        title: 'Espacio para crecer',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.',
+        title: 'Fortalecer la vida cristiana',
+        description: 'Brindar un espacio sano para crecer espiritualmente.',
     },
     {
         icon: 'lineChart',
-        title: 'Capacitar - Enseñar',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, natus consectetur.',
+        title: 'Desarrollar habilidades',
+        description: 'Capacitar y enseñar al joven a enfrentar cada etapa de su vida.',
     },
-    {
-        icon: 'wallet',
-        title: 'Compartir',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consectetur. A odio velit cum aliquam',
-    },
+
     {
         icon: 'sparkle',
-        title: 'Test Marketing Ideas',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.',
+        title: 'Agradar a Dios',
+        description: 'Compartir y divertirnos mientras agradamos a Dios.',
+    },
+    {
+        icon: 'paintbrush',
+        title: 'Actividades recreativas',
+        description: 'Disfrutar de actividades recreativas y deportivas.',
     },
 ];
 
@@ -46,12 +47,13 @@ const iconMap: Record<string, typeof Sparkle | typeof Tag | typeof Paintbrush | 
     <section id="benefits" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid place-items-center lg:grid-cols-2 lg:gap-24">
             <div>
-                <h2 class="text-primary mb-2 text-lg tracking-wider">Propósito</h2>
+                <h2 class="text-primary mb-2 text-lg tracking-wider"></h2>
 
-                <h2 class="mb-4 text-3xl font-bold md:text-4xl">Your Shortcut to Success</h2>
+                <h2 class="mb-4 text-3xl font-bold md:text-4xl">Sobre el Seminario Juvenil</h2>
                 <p class="text-muted-foreground mb-8 text-xl">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non ducimus reprehenderit architecto rerum similique facere odit
-                    deleniti necessitatibus quo quae.
+                    Es un programa juvenil cristiano exclusivo para adolescentes de 14 - 17 años. Nuestras actividades se llevan a cabo en las
+                    instalaciones de la IBBVA, tiene una duración de 8 semanas; de miércoles a viernes. para ayudar al joven a fortalecer su vida como
+                    cristiano por medio de la palabra de Dios, buen compañerismo y actividades recreativas.
                 </p>
             </div>
 

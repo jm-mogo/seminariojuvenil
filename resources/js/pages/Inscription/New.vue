@@ -166,7 +166,7 @@
                             accept=".jpg,.jpeg,.png"
                             required
                         />
-                        <p class="text-muted-foreground text-sm">Formatos aceptados: JPG, PNG. Tamaño máx: 2MB.</p>
+                        <p class="text-muted-foreground text-sm">Formatos aceptados: JPG, PNG. Tamaño máx: 5MB.</p>
                         <p v-if="form.errors.profilePhoto" class="text-sm text-red-600">{{ form.errors.profilePhoto }}</p>
                         <Progress
                             v-if="form.progress && form.progress.percentage && form.progress.percentage < 100"
@@ -184,7 +184,7 @@
                             accept=".jpg,.jpeg,.png,.pdf"
                             required
                         />
-                        <p class="text-muted-foreground text-sm">Formatos aceptados: JPG, PNG, PDF. Tamaño máx: 2MB.</p>
+                        <p class="text-muted-foreground text-sm">Formatos aceptados: JPG, PNG, PDF. Tamaño máx: 5MB.</p>
                         <p v-if="form.errors.studentIdPhoto" class="text-sm text-red-600">{{ form.errors.studentIdPhoto }}</p>
                     </div>
 
@@ -197,7 +197,7 @@
                             accept=".jpg,.jpeg,.png,.pdf"
                             required
                         />
-                        <p class="text-muted-foreground text-sm">Formatos aceptados: JPG, PNG, PDF. Tamaño máx: 2MB.</p>
+                        <p class="text-muted-foreground text-sm">Formatos aceptados: JPG, PNG, PDF. Tamaño máx: 5MB.</p>
                         <p v-if="form.errors.guardianIdPhoto" class="text-sm text-red-600">{{ form.errors.guardianIdPhoto }}</p>
                     </div>
 

@@ -230,7 +230,7 @@ const interviewMessageText = computed(() => {
     // Replace placeholder with actual data if available, otherwise use a placeholder
     const link = generateAppointmentLink(registration.value.id) || '[ENLACE PENDIENTE]'; // Use a clear placeholder
     // Construct the full message text
-    return `¡Gracias por realizar la inscripción en línea del Seminario Juvenil! Ya hemos revisado sus datos. Para continuar, por favor agende una entrevista usando el siguiente enlace único. \nRecuerde no compartirlo: ${link}`;
+    return `¡Gracias por realizar la inscripción en línea del Seminario Juvenil! \nYa hemos revisado sus datos. Para continuar, por favor agende una entrevista usando el siguiente enlace único. \n\nRecuerde no compartirlo: ${link}`;
 });
 
 // *** Updated Function to Copy Message and Show Toast ***
@@ -290,7 +290,7 @@ const formatInterviewStatus = (status: Registration['interview_status']): string
         case 'rejected':
             return 'Rechazado';
         default:
-            return capitalize(status?.replace(/_/g, ' ') ?? ''); // Fallback formatting
+            return 'Estado Desconocido';
     }
 };
 

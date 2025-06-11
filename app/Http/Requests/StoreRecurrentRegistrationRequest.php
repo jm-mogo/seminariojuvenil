@@ -51,9 +51,9 @@ class StoreRecurrentRegistrationRequest extends FormRequest
             'attendanceDuration' => ['required', 'string', 'max:50'],
 
             // Documents (Reduced set for recurrent)
-            'profilePhoto' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png', 'max:2048'], // Max 2MB
-            'studentIdPhoto' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'], // Max 2MB
-            'guardianIdPhoto' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:2048'], // Max 2MB
+            'profilePhoto' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png', 'max:5120'], // Max 5MB
+            'studentIdPhoto' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'], // Max 5MB
+            'guardianIdPhoto' => ['required', 'file', 'mimes:jpg,jpeg,png,pdf', 'max:5120'], // Max 5MB
             // testimony, purpose, recommendation are NOT required/validated here
 
 

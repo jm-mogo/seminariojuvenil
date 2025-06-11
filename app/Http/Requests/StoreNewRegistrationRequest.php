@@ -25,7 +25,7 @@ class StoreNewRegistrationRequest extends FormRequest
     public function rules(): array
     {
         // Max file sizes in kilobytes (KB)
-        $maxPhotoSize = 2 * 1024; // 2MB
+        $maxPhotoSize = 5 * 1024; // 2MB
         $maxDocumentSize = 5 * 1024; // 5MB
 
         return [
@@ -75,7 +75,7 @@ class StoreNewRegistrationRequest extends FormRequest
             'studentGender.required' => 'Por favor, selecciona el género del estudiante.',
             'studentGender.in' => 'El género seleccionado no es válido.',
             'birthDate.date_format' => 'El formato de la fecha de nacimiento debe ser Año-Mes-Día (YYYY-MM-DD).',
-            'profilePhoto.max' => 'La foto personal no debe exceder los 2MB.',
+            'profilePhoto.max' => 'La foto personal no debe exceder los 5MB.',
             // Add other custom messages as needed
         ];
     }
