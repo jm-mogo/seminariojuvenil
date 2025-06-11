@@ -35,5 +35,21 @@ echo "Custom Start: Starting PHP-FPM and Nginx with modified config..."
 php-fpm -y /assets/php-fpm.conf & # Start php-fpm in the background
 nginx -c "${NGINX_CONF}"          # Start nginx in the foreground (as the main process)
 
+PHP_VERSION_DIR=$(php -r 'echo PHP_INI_SCAN_DIR;' | sed 's|/conf.d$||') # Tries to get /etc/php/X.Y/fpm
+TARGET_PHP_CONF_D="${PHP_VERSION_DIR}/conf.d"
+CUSTOM_PHP_INI_SOURCE="./.nixpacks/php.ini" # Assuming it's copied to the app root by Nixpacks
+CUSTOM_PHP_INI_TARGET="${TARGET_PHP_CONF_D}/99-nixpacks-custom.ini" # Use a name that loads late
+
+if [ -f "${CUSTOM_PHP_INI_SOURCE}" ]; then
+    echo "Custom Start: Attempting to copy ${CUSTOM_PHP_INI_SOURCE} to ${CUSTOM_PHP_INI_TARGET}..."
+    mkdir -p "${TARGET_PHP_CONF_D}"
+    cp "${CUSTOM_PHP_INI_SOURCE}" "${CUSTOM_PHP_INI_TARGET}"
+    echo "Custom Start: Copied custom PHP ini."
+else
+    echo "Custom Start: WARNING - ${CUSTOM_PHP_INI_SOURCE} not found."
+fi
+
+echo "Custom Start: Starting PHP-FPM and Nginx with modified config..."
+
 # Keep the script running if nginx exits (though nginx -g 'daemon off;' should keep it foreground)
 wait
