@@ -8,6 +8,11 @@ use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// --- Debugging Route for PHP Info (Remove in production) ---
+Route::get('/my-very-secret-phpinfo-check-route-for-real-this-time', function () {
+    phpinfo();
+});
+
 // --- Public Routes ---
 Route::get('/', function () {
     return Inertia::render('Welcome/Welcome');
