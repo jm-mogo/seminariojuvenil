@@ -16,14 +16,14 @@ import { Separator } from '@/components/ui/separator';
                 <div class="flex flex-col gap-2"></div>
 
                 <div class="flex flex-col gap-2">
-                    <h3 class="text-lg font-bold">Contact</h3>
+                    <h3 class="text-lg font-bold">Contacto</h3>
                     <div>
                         <a href="#" class="opacity-60 hover:opacity-100"> Whatsapp </a>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-2">
-                    <h3 class="text-lg font-bold">Socials</h3>
+                    <h3 class="text-lg font-bold">Redes sociales</h3>
                     <div>
                         <a href="#" class="opacity-60 hover:opacity-100"> Instagram </a>
                     </div>
