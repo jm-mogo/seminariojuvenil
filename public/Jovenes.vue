@@ -21,7 +21,7 @@ const featureList: FeaturesProps[] = [
     {
         imagePathBefore: 'jose_before.jpg',
         imagePathAfter: 'jose_after.jpg',
-        name: 'Jose Angel',
+        name: 'José A. Machado',
     },
 ];
 
