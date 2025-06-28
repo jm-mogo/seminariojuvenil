@@ -39,7 +39,11 @@ import { Separator } from '@/components/ui/separator';
                 <h3 class="">
                     &copy; 2025 Seminario Juvenil <br />
                     Desarrollado por
-                    <a target="_blank" href="https://github.com/jm-mogo" className="text-primary transition-all border-primary hover:border-b-2">
+                    <a
+                        target="_blank"
+                        href="https://github.com/jm-mogo"
+                        className="font-bold text-[#0e1d41] transition-all border-primary hover:border-b-2"
+                    >
                         José Mogollón
                     </a>
                 </h3>

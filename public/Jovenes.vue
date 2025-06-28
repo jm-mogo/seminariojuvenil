@@ -60,7 +60,7 @@ const featureList: FeaturesProps[] = [
 
         <div class="flex flex-wrap justify-center">
             <div v-for="{ name, imagePathBefore, imagePathAfter } in featureList" :key="name">
-                <Card class="bg-background h-full w-102 border-0 shadow-none">
+                <Card class="bg-background h-full w-100 border-0 shadow-none">
                     <CardHeader class="flex items-center justify-center">
                         <img :src="imagePathBefore" alt="" class="mb-4 h-68 w-1/2 rounded-lg object-cover object-top shadow-lg" />
                         <img :src="imagePathAfter" alt="" class="mb-4 h-68 w-1/2 rounded-lg object-cover object-top shadow-lg" />
