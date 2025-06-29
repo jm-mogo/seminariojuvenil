@@ -20,10 +20,10 @@ const props = defineProps<{
 const mode = useColorMode()
 
 // Define high-contrast foreground for tooltip text
-const FgColor = 'hsl(var(--foreground))'
+const FgColor = 'black'
 // Keep muted for the less important legend text
 const MutedFgColor = 'hsl(var(--muted-foreground))'
-const BackgroundColor = 'hsl(var(--background))'
+const BackgroundColor = 'white'
 const BorderColor = 'hsl(var(--border))'
 
 // Create computed chart options that react to theme changes
