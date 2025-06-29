@@ -23,28 +23,12 @@ const featureList: FeaturesProps[] = [
         imagePathAfter: 'jose_after.jpg',
         name: 'José A. Machado',
     },
+    {
+        imagePathBefore: 'fernando_before.jpg',
+        imagePathAfter: 'fernando_after.jpg',
+        name: 'Fernando Vintimilla',
+    },
 ];
-
-// const iconMap: Record<
-//     string,
-//     | typeof TabletSmartphone
-//     | typeof BadgeCheck
-//     | typeof Goal
-//     | typeof PictureInPicture
-//     | typeof Paintbrush
-//     | typeof MousePointerClick
-//     | typeof MessageCircle
-//     | typeof Newspaper
-// > = {
-//     tabletSmartphone: TabletSmartphone,
-//     badgeCheck: BadgeCheck,
-//     goal: Goal,
-//     pictureInPicture: PictureInPicture,
-//     paintbrush: Paintbrush,
-//     mousePointerClick: MousePointerClick,
-//     messageCircle: MessageCircle,
-//     newspaper: Newspaper,
-// };
 </script>
 
 <template>

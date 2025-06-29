@@ -27,6 +27,7 @@ class InscriptionRecurrentController extends Controller
             'profilePhoto' => 'doc_photo_path',
             'studentIdPhoto' => 'doc_student_id_card_path',
             'guardianIdPhoto' => 'doc_guardian_id_card_path',
+            'recommendationLetter' => 'doc_recommendation_path'
         ];
         // --- End definition ---
 
@@ -57,7 +58,6 @@ class InscriptionRecurrentController extends Controller
                 'previous_participations_count' => $validatedData['previousParticipations'],
                 'doc_testimony_path' => null,
                 'doc_purpose_statement_path' => null,
-                'doc_recommendation_path' => null,
             ];
 
             // 2. Create the initial registration record

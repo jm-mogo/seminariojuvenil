@@ -91,15 +91,15 @@
                     <!-- === NEW FIELD === -->
                     <div class="space-y-2">
                         <Label for="previousParticipations">¿Cuántas veces has participado antes? <span class="text-red-500">*</span></Label>
-                        <Input
+                        <select
                             id="previousParticipations"
-                            type="number"
-                            min="1"
-                            max="2"
                             v-model.number="form.previousParticipations"
                             required
-                            placeholder="1 ó 2"
-                        />
+                            class="border-input bg-background focus:border-primary focus:ring-primary block w-full rounded-md border px-3 py-2 text-base shadow-sm focus:ring-1 focus:outline-none"
+                        >
+                            <option :value="1">1</option>
+                            <option :value="2">2</option>
+                        </select>
                         <p class="text-muted-foreground text-xs">Indica si has participado 1 o 2 veces anteriormente en el seminario.</p>
                         <p v-if="form.errors.previousParticipations" class="text-sm text-red-600">{{ form.errors.previousParticipations }}</p>
                     </div>
@@ -222,6 +222,19 @@
                         <p v-if="form.errors.guardianIdPhoto" class="text-sm text-red-600">{{ form.errors.guardianIdPhoto }}</p>
                     </div>
 
+                    <div class="space-y-2">
+                        <Label for="recommendationLetter">Carta de Recomendación Pastoral (Opcional)</Label>
+                        <Input
+                            id="recommendationLetter"
+                            type="file"
+                            @input="form.recommendationLetter = ($event.target as HTMLInputElement)?.files?.[0] ?? null"
+                            accept=".doc,.docx,.pdf"
+                        />
+                        <p class="text-muted-foreground text-sm">
+                            Requerida solo si vienes de otra iglesia distinta a la sede. Formatos: Word, PDF. Tamaño máx: 2MB.
+                        </p>
+                        <p v-if="form.errors.recommendationLetter" class="text-sm text-red-600">{{ form.errors.recommendationLetter }}</p>
+                    </div>
                     <!-- === REMOVED FIELDS ===
                     <div class="space-y-2">
                         <Label for="salvationTestimony">Testimonio de Salvación <span class="text-red-500">*</span></Label>
@@ -233,10 +246,7 @@
                        ...
                     </div>
 
-                    <div class="space-y-2">
-                        <Label for="recommendationLetter">Carta de Recomendación Pastoral (Opcional)</Label>
-                        ...
-                    </div>
+                  
                     === END REMOVED FIELDS === -->
                 </CardContent>
             </Card>
@@ -348,10 +358,10 @@ const form = useForm({
     profilePhoto: null as File | null,
     studentIdPhoto: null as File | null,
     guardianIdPhoto: null as File | null,
+    recommendationLetter: null as File | null,
     // Removed fields:
     // salvationTestimony: null as File | null,
     // enrollmentPurpose: null as File | null,
-    // recommendationLetter: null as File | null,
 });
 
 const isCalendarOpen = ref(false);
@@ -412,7 +422,8 @@ onMounted(() => {
 const handleDateUpdate = (value: DateValue | undefined) => {
     // ... (keep existing date update logic)
     if (value) {
-        isCalendarOpen.value = false;
+        // isCalendarOpen.value = false;
+        console.log(value);
     }
 };
 

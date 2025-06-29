@@ -405,7 +405,8 @@ onMounted(() => {
 
 const handleDateUpdate = (value: DateValue | undefined) => {
     if (value) {
-        isCalendarOpen.value = false;
+        // isCalendarOpen.value = false;
+        console.log(value);
     }
 };
 

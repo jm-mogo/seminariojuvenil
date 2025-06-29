@@ -19,6 +19,9 @@ class DashboardController extends Controller
         $pendingScheduledInterviews = $registrations->where('interview_status', 'checked')->count();
         $scheduledInterviews = $registrations->where('interview_status', 'scheduled')->count();
 
+        $girlRegistrations = $registrations->where('student_gender', 'female')->count();
+        $boyRegistrations = $registrations->where('student_gender', 'male')->count();
+
 
         return inertia('Dashboard', [
             'totalRegistrations' => $totalRegistrations,
@@ -27,6 +30,8 @@ class DashboardController extends Controller
             'pendingRegistrations' => $pendingRegistrations,
             'pendingScheduledInterviews' => $pendingScheduledInterviews,
             'scheduledInterviews' => $scheduledInterviews,
+            'girlRegistrations' => $girlRegistrations,
+            'boyRegistrations' => $boyRegistrations
         ]);
     }
 }
