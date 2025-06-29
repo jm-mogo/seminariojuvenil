@@ -18,18 +18,24 @@ import { Separator } from '@/components/ui/separator';
                 <div class="flex flex-col gap-2">
                     <h3 class="text-lg font-bold">Contacto</h3>
                     <div>
-                        <a href="#" class="opacity-60 hover:opacity-100"> Whatsapp </a>
+                        <a target="_blank" href="https://wa.link/gtd0hy" class="opacity-60 hover:opacity-100"> Whatsapp </a>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-2">
                     <h3 class="text-lg font-bold">Redes sociales</h3>
                     <div>
-                        <a href="#" class="opacity-60 hover:opacity-100"> Instagram </a>
+                        <a target="_blank" href="https://www.instagram.com/vencedores_ibbva" class="opacity-60 hover:opacity-100"> Instagram </a>
                     </div>
 
                     <div>
-                        <a href="#" class="opacity-60 hover:opacity-100"> Facebook </a>
+                        <a
+                            target="_blank"
+                            href="https://www.facebook.com/people/J%C3%B3venes-Vencedores-IBBVA/100066778846263/"
+                            class="opacity-60 hover:opacity-100"
+                        >
+                            Facebook
+                        </a>
                     </div>
                 </div>
             </div>

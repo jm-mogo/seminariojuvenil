@@ -2,7 +2,6 @@
     <header
         :class="{
             'shadow-light': mode === 'light',
-            'shadow-dark': mode === 'dark',
             'bg-card sticky top-5 z-40 mx-auto mt-4 flex w-[90%] items-center justify-between rounded-2xl border p-2 shadow-md md:w-[70%] lg:w-[75%] lg:max-w-screen-xl': true,
         }"
     >
@@ -69,12 +68,10 @@ const mode = useColorMode();
 mode.value = 'light';
 
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-
-import { Menu } from 'lucide-vue-next';
 
 interface RouteProps {
     href: string;
