@@ -31,8 +31,8 @@ const blueShades = {
 
 const registrationGenderData = computed(() => {
     const data = [props.girlRegistrations, props.boyRegistrations];
-    const labels = ['Chicas', 'Muchachos'];
-    const colors = [blueShades.sky.DEFAULT, blueShades.sky.lighter];
+    const labels = ['Muchachas', 'Muchachos'];
+    const colors = ['#ffaef0', blueShades.sky.lighter];
 
     return {
         labels: labels,
@@ -167,7 +167,7 @@ const registrationStatusData = computed(() => {
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Distribución Chichas/Muchachos</CardTitle>
+                        <CardTitle>Distribución Muchachas/Muchachos</CardTitle>
                         <CardDescription> </CardDescription>
                     </CardHeader>
                     <!-- RESTORED: This is the layout you liked -->

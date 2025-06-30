@@ -1,41 +1,24 @@
-<template>
-    <Table>
-        <TableHeader>
-            <TableRow>
-                <TableHead>Nombre Completo</TableHead>
-                <TableHead>Fecha</TableHead>
-                <TableHead>Estado</TableHead>
-                <TableHead>Ver todos los datos</TableHead>
-            </TableRow>
-        </TableHeader>
-        <TableBody>
-            <TableRow v-for="registration in registrations" :key="registration.id">
-                <TableHead>{{ registration.student_full_name }}</TableHead>
-                <TableHead>{{ formatDateTime(registration.created_at) }}</TableHead>
-                <TableHead>{{ registration.interview_status }}</TableHead>
-                <!-- Use Inertia's Link component for SPA navigation -->
-                <TableHead>
-                    <Link :href="'registrations/' + registration.id"> Ver detalles </Link>
-                </TableHead>
-            </TableRow>
-        </TableBody>
-    </Table>
-</template>
-
 <script setup lang="ts">
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { type Registration } from '@/types';
-import { Link } from '@inertiajs/vue3'; // <-- Import Inertia Link
+import { Link } from '@inertiajs/vue3';
+import { h } from 'vue'; // <-- Import Vue's h function
 
+// --- Import your table components and column definition types ---
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import DataTable from '@/components/ui/data-table/DataTable.vue';
+import type { ColumnDef } from '@tanstack/vue-table';
+import { ArrowUpDown } from 'lucide-vue-next';
+
+// --- Props ---
 interface Props {
     registrations: Registration[];
 }
-
 const props = defineProps<Props>();
-console.log('props', props);
-
-const formatDateTime = (dateTimeString: string | null | undefined): string | null => {
-    if (!dateTimeString) return null;
+console.log(props);
+// --- Helper Function (can stay here or be moved to a utils file) ---
+const formatDateTime = (dateTimeString: string | null | undefined): string | undefined => {
+    if (!dateTimeString) return 'N/A';
     try {
         return new Date(dateTimeString).toLocaleString(undefined, {
             year: 'numeric',
@@ -45,8 +28,73 @@ const formatDateTime = (dateTimeString: string | null | undefined): string | nul
             minute: '2-digit',
         });
     } catch (e) {
-        console.error('Error formateando fecha/hora:', dateTimeString, e);
+        console.log(e);
         return dateTimeString;
     }
 };
+
+// --- Column Definitions (Now inside this component) ---
+const columns: ColumnDef<Registration>[] = [
+    {
+        accessorKey: 'student_full_name',
+        header: ({ column }) => {
+            return h(
+                Button,
+                {
+                    variant: 'ghost',
+                    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+                },
+                () => ['Nombre Completo', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+            );
+        },
+        cell: ({ row }) => h('div', { class: 'font-medium' }, row.getValue('student_full_name')),
+    },
+    {
+        accessorKey: 'created_at',
+        header: ({ column }) => {
+            return h(
+                Button,
+                {
+                    variant: 'ghost',
+                    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+                },
+                () => ['Fecha', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })],
+            );
+        },
+        cell: ({ row }) => h('div', formatDateTime(row.getValue('created_at'))),
+    },
+    {
+        accessorKey: 'interview_status',
+        header: 'Estado',
+        cell: ({ row }) => {
+            const status = row.getValue('interview_status') as string;
+            const variant = status === 'scheduled' ? 'default' : status === 'pending' ? 'destructive' : 'outline';
+            return h(Badge, { variant }, () => (status === 'scheduled' ? 'Agendado' : status === 'pending' ? 'Por revisar' : 'Por agendar'));
+        },
+    },
+    {
+        id: 'actions',
+        header: 'Acciones',
+        enableHiding: false,
+        cell: ({ row }) => {
+            const registration = row.original;
+            return h(
+                Link,
+                {
+                    href: `registrations/${registration.id}`,
+                    class: 'text-primary hover:underline',
+                },
+                () => 'Ver detalles',
+            );
+        },
+    },
+];
 </script>
+
+<template>
+    <!-- The template remains unchanged, it's simple and clean -->
+    <div>
+        <h1 class="mb-4 text-2xl font-bold">Inscripciones</h1>
+        <DataTable :data="registrations" :columns="columns" />
+    </div>
+</template>
