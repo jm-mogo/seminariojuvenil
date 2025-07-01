@@ -16,7 +16,7 @@ const handleClick = () => {
             <div class="space-y-8 text-center">
                 <div class="mx-auto max-w-screen-md text-center text-5xl font-bold md:text-6xl">
                     <h1>
-                        Se parte del <br />
+                        Sé parte del <br />
                         <span class="bg-gradient-to-r from-[#0e1d41] to-[#2e3c6e] bg-clip-text text-transparent">Seminario Juvenil </span>
                         <br />
                         de la IBBVA
