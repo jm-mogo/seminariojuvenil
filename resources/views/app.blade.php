@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="WhatsApp" />
-    <meta property="og:description" content="Seminario Juvenil." />
+    <meta property="og:title" content="Seminario Juvenil" />
+    <meta property="og:description" content="El lugar ideal para crecer." />
     <meta property="og:url" content="https://whatsapp.com" />
     <meta property="og:image" content="https://seminariojuvenil.up.railway.app/banner_square.webp" />
 
