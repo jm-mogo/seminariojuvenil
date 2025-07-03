@@ -38,7 +38,7 @@ const featureList: FeaturesProps[] = [
         <h2 class="mb-4 text-center text-3xl font-bold md:text-4xl">Un antes y un después</h2>
 
         <h3 class="text-muted-foreground mx-auto mb-8 text-center text-xl md:w-1/2">
-            Muchos jóvenes nos han dicho: “no soy el mismo desde que fui al seminario.” Y es que, cuando Cristo obra, hay una línea que divide el
+            Muchos jóvenes nos han dicho: “no soy el mismo desde que fui al seminario”. Y es que, cuando Cristo obra, hay una línea que divide el
             antes y el después. Este programa ha sido usado por Dios para levantar siervos, restaurar vidas, confirmar llamados y avivar corazones.
         </h3>
 
