@@ -7,7 +7,7 @@
     <meta property="og:title" content="Seminario Juvenil" />
     <meta property="og:description" content="El lugar ideal para crecer." />
     <meta property="og:url" content="https://whatsapp.com" />
-    <meta property="og:image" content="https://seminariojuvenil.up.railway.app/banner_square.webp" />
+    <meta property="og:image" content="https://seminariojuvenil.up.railway.app/logo_square.jpg" />
 
     {{-- Inline script to detect system dark mode preference and apply it immediately --}}
     <script>
